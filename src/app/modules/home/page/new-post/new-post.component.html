@@ -1,0 +1,22 @@
+
+<form [formGroup]="postForm" >
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="Title">Titre</label>
+            <input type="text" id="Title"  class="form-control" formControlName="title">
+        </div>
+           
+        <div class="form-group">
+            <label for="Description">Description</label>
+            <textarea rows = "5" cols = "2" class="form-control" ng-maxlength="5" formControlName="description"></textarea>
+        </div>
+    </div>
+</form> 
+<div class="modal-footer">
+    <button type="button" class="mat-raised-button" data-dismiss="modal" (click)="close()">
+        <span class="fa fa-ban"></span>&nbsp;
+        <span >Fermer</span>
+    </button>
+    <button type="submit" class="mat-raised-button" [disabled]="postForm.invalid" (click)="save()" >Ajouter</button>     
+</div>
+    

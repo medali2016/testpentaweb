@@ -1,0 +1,47 @@
+<div id="content">
+  <div>
+    <button style="float: right" class="btn btn-primary" (click)="openMyModal()">
+      Ajouter 
+    </button>
+
+    <h1>Posts</h1>
+  </div>
+
+   
+<div class="list-group">
+  <div *ngFor="let e of posts$" class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class=" w-100 justify-content-between">
+        <h2 >{{e.post.user.firstName}}</h2>
+      </div>
+      <div class=" w-100 justify-content-between">
+          <h5 >{{e.post.title}}</h5>
+          <small>{{e.post.description}}</small>
+      </div>
+      <p >{{e.post.date}}</p>
+      <div class="form-group">
+        <h2 for="commets">Commetaires</h2>
+        <div class="list-group">
+          <div *ngFor="let c of e.comments" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class=" w-100 justify-content-between">
+                <h2 >{{c.post.user.firstName}}</h2>
+              </div>
+              <div class=" w-100 justify-content-between">
+                  <small>{{c.description}}</small>
+              </div>
+              <p >{{c.date}}</p>
+              <button *ngIf = "this.userId==c.user.id" style="float: right" class="btn btn-danger" (click)="deleteComment(c.id)">
+                Supprimer commentiare
+              </button>
+          </div>
+        </div>
+        <input type="text" id="Title"  class="form-control" [(ngModel)]="comments[e.post.id]">
+        <button style="float: left" class="btn btn-primary" (click)="addComment(e.post)">
+          Commenter 
+        </button>
+      </div>
+      <button *ngIf = "this.userId==e.post.user.id" style="float: right" class="btn btn-danger" (click)="delete(e.post.id)">
+        Supprimer post
+      </button>
+  </div>
+</div>
+</div>
